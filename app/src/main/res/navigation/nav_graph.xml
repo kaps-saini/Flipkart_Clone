@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboard">
+
+    <fragment
+        android:id="@+id/dashboard"
+        android:name="com.example.flipkartclone.presentation.fragments.Dashboard"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboard_to_itemDetails"
+            app:destination="@id/itemDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/explore"
+        android:name="com.example.flipkartclone.presentation.fragments.Explore"
+        android:label="fragment_explore"
+        tools:layout="@layout/fragment_explore" >
+        <action
+            android:id="@+id/action_explore_to_itemDetails"
+            app:destination="@id/itemDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/categories"
+        android:name="com.example.flipkartclone.presentation.fragments.Categories"
+        android:label="fragment_categories"
+        tools:layout="@layout/fragment_categories" />
+    <fragment
+        android:id="@+id/account"
+        android:name="com.example.flipkartclone.presentation.fragments.Account"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/cart"
+        android:name="com.example.flipkartclone.presentation.fragments.Cart"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/itemDetails"
+        android:name="com.example.flipkartclone.presentation.fragments.ItemDetails"
+        android:label="fragment_item_details"
+        tools:layout="@layout/fragment_item_details" >
+        <action
+            android:id="@+id/action_itemDetails_to_imageViewr"
+            app:destination="@id/imageViewr" />
+        <argument
+            android:name="itemData"
+            app:argType="com.example.flipkartclone.domain.models.ItemDataModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageViewr"
+        android:name="com.example.flipkartclone.presentation.fragments.ImageViewr"
+        android:label="fragment_image_viewr"
+        tools:layout="@layout/fragment_image_viewr" >
+        <argument
+            android:name="ImageList"
+            app:argType="com.example.flipkartclone.domain.models.ItemDataModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/authBottomSheet"
+        android:name="com.example.flipkartclone.AuthBottomSheet"
+        android:label="fragment_auth_bottom_sheet"
+        tools:layout="@layout/fragment_auth_bottom_sheet" />
+</navigation>

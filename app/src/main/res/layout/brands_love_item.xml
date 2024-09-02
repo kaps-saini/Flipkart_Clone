@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="120dp"
+        android:layout_height="170dp"
+        android:background="@drawable/grey_stroke_background">
+
+        <ImageView
+            android:id="@+id/ivBrandsForYou"
+            android:layout_width="90dp"
+            android:layout_height="110dp"
+            android:scaleType="centerInside"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBrandsLoveTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/anek_latin_medium"
+            android:text="title"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/ivBrandsForYou"
+            app:layout_constraintStart_toStartOf="@+id/ivBrandsForYou"
+            app:layout_constraintTop_toBottomOf="@+id/ivBrandsForYou" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+</FrameLayout>
