@@ -1,28 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AuthBottomSheet"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
-
-        <FrameLayout
-            android:id="@+id/standard_bottom_sheet"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            style="@style/Widget.Material3.BottomSheet"
-            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
-
-            <ScrollView
-                android:id="@+id/scrollView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        tools:context=".presentation.fragments.AuthBottomSheet">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@color/dark_blue">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,10 +56,11 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
+                        android:background="@drawable/top_corner_bottom_sheet_background"
                         android:orientation="vertical"
                         android:padding="18dp"
-                        android:background="@drawable/top_corner_bottom_sheet_background"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -92,61 +82,71 @@
                             android:textColor="@color/mid_grey"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textfield.TextInputLayout
+                        <LinearLayout
                             android:id="@+id/textInputLayout2"
-                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:hint="Phone Number">
+                            android:padding="8dp"
+                            android:background="@drawable/blue_stroke_background"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="16dp">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
+                            <com.hbb20.CountryCodePicker
+                                android:id="@+id/ccp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:gravity="center"
+                                android:textSize="16sp"
+                                app:ccp_defaultPhoneCode="91"
+                                app:ccp_showFlag="false"
+                                app:ccp_showNameCode="false" />
 
-                                <com.hbb20.CountryCodePicker
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:textSize="16sp"
-                                    app:ccp_defaultPhoneCode="91"
-                                    app:ccp_showFlag="false"
-                                    app:ccp_showNameCode="false" />
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/etMobile"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:hint="Phone Number"
                                     android:inputType="number"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
-                            </LinearLayout>
 
-                        </com.google.android.material.textfield.TextInputLayout>
 
-                        <FrameLayout
-                            android:id="@+id/flBtn"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="18dp">
-
-                            <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/btnContinue"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@color/dark_blue"
-                                android:text="Continue"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white"
-                                android:textSize="14sp" />
-                        </FrameLayout>
+                        </LinearLayout>
 
                     </LinearLayout>
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </ScrollView>
+    <FrameLayout
+        android:id="@+id/flBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:padding="18dp">
 
-        </FrameLayout>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:progressTint="@color/blue"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:background="@color/dark_blue"
+            android:text="Continue"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </FrameLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

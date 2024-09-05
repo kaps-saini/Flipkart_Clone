@@ -1,12 +1,15 @@
 package com.example.flipkartclone.di
 
+import android.content.Context
 import com.example.flipkartclone.data.api.FlipkartCloneApi
+import com.example.flipkartclone.data.user.UserDetailsPref
 import com.example.flipkartclone.utils.CheckNetwork
 import com.example.flipkartclone.utils.Util.BASE_URL
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -47,6 +50,10 @@ object AppModule {
         return CheckNetwork()
     }
 
-
+    @Provides
+    @Singleton
+    fun provideUserDetailsPrefInstance( @ApplicationContext context: Context):UserDetailsPref{
+        return UserDetailsPref(context)
+    }
 
 }

@@ -32,12 +32,29 @@
         android:id="@+id/account"
         android:name="com.example.flipkartclone.presentation.fragments.Account"
         android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_account_to_authBottomSheet"
+            app:destination="@id/authBottomSheet" />
+        <action
+            android:id="@+id/action_account_to_savedAddress"
+            app:destination="@id/savedAddress" />
+        <action
+            android:id="@+id/action_account_to_editProfile"
+            app:destination="@id/editProfile" />
+        <action
+            android:id="@+id/action_account_to_dashboard"
+            app:destination="@id/dashboard" />
+    </fragment>
     <fragment
         android:id="@+id/cart"
         android:name="com.example.flipkartclone.presentation.fragments.Cart"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cart_to_authBottomSheet"
+            app:destination="@id/authBottomSheet" />
+    </fragment>
     <fragment
         android:id="@+id/itemDetails"
         android:name="com.example.flipkartclone.presentation.fragments.ItemDetails"
@@ -49,6 +66,12 @@
         <argument
             android:name="itemData"
             app:argType="com.example.flipkartclone.domain.models.ItemDataModel" />
+        <action
+            android:id="@+id/action_itemDetails_to_authBottomSheet"
+            app:destination="@id/authBottomSheet" />
+        <action
+            android:id="@+id/action_itemDetails_to_cart2"
+            app:destination="@id/cart" />
     </fragment>
     <fragment
         android:id="@+id/imageViewr"
@@ -61,7 +84,63 @@
     </fragment>
     <fragment
         android:id="@+id/authBottomSheet"
-        android:name="com.example.flipkartclone.AuthBottomSheet"
+        android:name="com.example.flipkartclone.presentation.fragments.AuthBottomSheet"
         android:label="fragment_auth_bottom_sheet"
-        tools:layout="@layout/fragment_auth_bottom_sheet" />
+        tools:layout="@layout/fragment_auth_bottom_sheet" >
+        <action
+            android:id="@+id/action_authBottomSheet_to_verifyOtp"
+            app:destination="@id/verifyOtp" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifyOtp"
+        android:name="com.example.flipkartclone.presentation.fragments.VerifyOtp"
+        android:label="fragment_verify_otp"
+        tools:layout="@layout/fragment_verify_otp" >
+        <argument
+            android:name="phoneNumber"
+            app:argType="string" />
+        <argument
+            android:name="verificationId"
+            app:argType="string" />
+        <argument
+            android:name="resendToken"
+            app:argType="com.example.flipkartclone.domain.models.token.ResendTokenData" />
+        <action
+            android:id="@+id/action_verifyOtp_to_dashboard"
+            app:destination="@id/dashboard" />
+        <action
+            android:id="@+id/action_verifyOtp_to_editProfile"
+            app:destination="@id/editProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfile"
+        android:name="com.example.flipkartclone.presentation.fragments.EditProfile"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <argument
+            android:name="phoneNumber"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_editProfile_to_dashboard"
+            app:destination="@id/dashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedAddress"
+        android:name="com.example.flipkartclone.presentation.fragments.SavedAddress"
+        android:label="fragment_saved_address"
+        tools:layout="@layout/fragment_saved_address" >
+        <action
+            android:id="@+id/action_savedAddress_to_createNewAddress"
+            app:destination="@id/createNewAddress" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNewAddress"
+        android:name="com.example.flipkartclone.presentation.fragments.CreateNewAddress"
+        android:label="fragment_create_new_address"
+        tools:layout="@layout/fragment_create_new_address" >
+        <argument
+            android:name="userAddressSaved"
+            app:argType="com.example.flipkartclone.domain.models.user.Address"
+            app:nullable="true" />
+    </fragment>
 </navigation>

@@ -9,6 +9,7 @@
 
         <!-- AppBarLayout to contain the toolbar and collapsing part -->
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
@@ -54,9 +55,11 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/llLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+
                     android:padding="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp">
@@ -189,6 +192,38 @@
                         android:fontFamily="@font/asap_medium"/>
 
                     <TextView
+                        android:id="@+id/tvAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Account"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_marginTop="8dp"
+                        app:drawableEndCompat="@drawable/ic_action_arrow_right"
+                        android:drawablePadding="12dp"
+                        android:drawableTint="@color/blue"
+                        app:drawableStartCompat="@drawable/ic_action_profile"/>
+
+                    <TextView
+                        android:id="@+id/tvSavedAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Saved Address"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_marginTop="8dp"
+                        app:drawableEndCompat="@drawable/ic_action_arrow_right"
+                        android:drawablePadding="12dp"
+                        android:drawableTint="@color/blue"
+                        app:drawableStartCompat="@drawable/ic_action_saved_address"/>
+
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Select Language"
@@ -228,6 +263,42 @@
                         app:drawableStartCompat="@drawable/icon_help"
                         app:drawableEndCompat="@drawable/ic_action_arrow_right" />
                 </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/materialDivider11"
+                        android:layout_width="match_parent"
+                        android:layout_height="76dp"
+                        app:dividerColor="@color/grey_lite_stroke"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnLogout"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_margin="18dp"
+                        android:background="@color/white"
+                        android:text="Log out"
+                        android:textAllCaps="false"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/materialDivider11"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/materialDivider11"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
