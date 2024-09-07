@@ -24,13 +24,17 @@ import com.example.flipkartclone.adapter.ImageSliderAdapter
 import com.example.flipkartclone.adapter.ProductHighlights
 import com.example.flipkartclone.adapter.ProductImageSliderAdapter
 import com.example.flipkartclone.adapter.ProductReviews
+import com.example.flipkartclone.data.user.UserCartItemsPref
 import com.example.flipkartclone.databinding.FragmentItemDetailsBinding
 import com.example.flipkartclone.domain.models.Highlight
+import com.example.flipkartclone.domain.models.user.CartItems
 import com.example.flipkartclone.helper.Helpers
+import com.example.flipkartclone.utils.Status
 import com.example.flipkartclone.vm.FlipkartCloneViewModel
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ItemDetails : Fragment() {
@@ -44,6 +48,9 @@ class ItemDetails : Fragment() {
     private lateinit var exploreAdapter: ExploreAdapter
     private lateinit var productHighlights: ProductHighlights
     private lateinit var productReviews: ProductReviews
+
+    @Inject
+    lateinit var userCartItemsPref:UserCartItemsPref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,13 +93,25 @@ class ItemDetails : Fragment() {
         }
 
         binding.btnAddToCart.setOnClickListener{
-
+            val itemDetail = navArgs.itemData.item
+            val itemPrice = navArgs.itemData.pricing
+            val rating = navArgs.itemData.ratings
+            if (binding.btnAddToCart.text.contains(Status.GoToCart.toString(),false)){
+                findNavController().navigate(R.id.action_itemDetails_to_cart2)
+            }else if (binding.btnAddToCart.text.contains(Status.AddToCart.toString(),false)){
+                userCartItemsPref.addCartItem(CartItems(itemDetail,itemPrice,rating))
+                binding.btnAddToCart.text = Status.GoToCart.toString()
+                Helpers.makeSnackBar(requireView(),"Added to cart successfully")
+            }
         }
 
         binding.btnBuyNow.setOnClickListener{
-
+            val itemDetail = navArgs.itemData.item
+            val itemPrice = navArgs.itemData.pricing
+            val rating = navArgs.itemData.ratings
+            userCartItemsPref.addCartItem(CartItems(itemDetail,itemPrice,rating,1))
+            findNavController().navigate(R.id.action_itemDetails_to_cart2)
         }
-
 
 
         return binding.root
@@ -113,8 +132,8 @@ class ItemDetails : Fragment() {
         binding.tvProductRatingsCount.text = itemData.ratings.count.toString()
         val discount = itemData.pricing.discount.toString()
         binding.tvProductDiscount.text = "$discount%"
-        binding.tvProductMrp.text = itemData.pricing.mrp.toString()
-        binding.tvProductSellingPrice.text = itemData.pricing.sellingPrice.toString()
+        binding.tvProductMrp.text = "₹${itemData.pricing.mrp}"
+        binding.tvProductSellingPrice.text = "₹${itemData.pricing.sellingPrice}"
 
         val ref = inflateLayout(R.layout.layout_ratings,binding.stubRatingFrame)
         fetRatingData(ref)

@@ -22,7 +22,7 @@ class GiftingAdapter (private val onClick:(position:Int,itemData: ItemModelItem)
 
         fun bind(itemModelItem: ItemModelItem){
             itemTitle.text = itemModelItem.title
-            itemOffer.text = itemModelItem.discountedPrice.toString()
+            itemOffer.text = "₹${itemModelItem.discountedPrice}"
             Glide.with(itemView.context)
                 .load(itemModelItem.images[0])
                 .into(itemImage)

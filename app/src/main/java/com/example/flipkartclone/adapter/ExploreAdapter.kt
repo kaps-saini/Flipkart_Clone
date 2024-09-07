@@ -1,6 +1,5 @@
 package com.example.flipkartclone.adapter
 
-import android.media.Rating
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.flipkartclone.R
 import com.example.flipkartclone.domain.models.ItemModelItem
-import com.example.flipkartclone.presentation.fragments.Explore
 
-class ExploreAdapter(private val onClick:(position:Int,itemData: ItemModelItem) -> Unit
+class ExploreAdapter (private val onClick:(position:Int,itemData: ItemModelItem) -> Unit
 ): RecyclerView.Adapter<ExploreAdapter.BrandsViewHolder>() {
 
     inner class BrandsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -30,7 +28,7 @@ class ExploreAdapter(private val onClick:(position:Int,itemData: ItemModelItem) 
         fun bind(itemModelItem: ItemModelItem){
             val price = itemModelItem.discountedPrice.toString()
             itemTitle.text = itemModelItem.title
-            itemSellingPrice.text = "/$/$price"
+            itemSellingPrice.text = "₹$price"
             itemMrp.text = itemModelItem.price.toString()
             itemDiscount.text = "40% off"
             itemDesc.text = itemModelItem.desc

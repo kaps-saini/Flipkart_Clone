@@ -1,5 +1,5 @@
 package com.example.flipkartclone.utils
 
 enum class Status {
-    NoInternet
+    NoInternet,GoToCart,AddToCart
 }

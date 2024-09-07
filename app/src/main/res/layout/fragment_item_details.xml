@@ -240,7 +240,7 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/asap"
                 android:padding="4dp"
-                android:text="$999"
+                android:text="₹999"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -503,8 +503,8 @@
                 android:layout_weight="1"
                 android:text="Add to Cart"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="@font/asap_medium"
                 android:gravity="center"
                 android:background="@color/white" />
 
@@ -515,8 +515,8 @@
                 android:layout_weight="1"
                 android:text="Buy Now"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="@font/asap_medium"
                 android:gravity="center"
                 android:background="@color/black" />
         </LinearLayout>

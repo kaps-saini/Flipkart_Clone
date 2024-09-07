@@ -5,18 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/materialDivider12"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        app:dividerColor="@color/grey_lite_stroke"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="8dp"
         android:background="@drawable/grey_stroke_background"
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
+        android:layout_marginTop="8dp"
         app:cardPreventCornerOverlap="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/materialDivider12">
 
         <ImageView
             android:id="@+id/itemImageInCart"
@@ -28,7 +38,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tvItemNameCart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -43,7 +53,7 @@
         app:layout_constraintTop_toTopOf="@+id/frameLayout" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tvItemDescCart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -52,9 +62,9 @@
         android:text="Item Desc"
         android:textColor="@color/mid_grey"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView8"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintEnd_toEndOf="@+id/tvItemNameCart"
+        app:layout_constraintStart_toStartOf="@+id/tvItemNameCart"
+        app:layout_constraintTop_toBottomOf="@+id/tvItemNameCart" />
 
     <LinearLayout
         android:id="@+id/linearLayout6"
@@ -63,8 +73,8 @@
         android:layout_marginTop="6dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10">
+        app:layout_constraintStart_toStartOf="@+id/tvItemDescCart"
+        app:layout_constraintTop_toBottomOf="@+id/tvItemDescCart">
 
         <RatingBar
             android:id="@+id/tvRatingCart"
@@ -104,7 +114,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvMrpExplore"
+        android:id="@+id/tvMrpCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -113,7 +123,7 @@
         android:text="1299"
         android:textColor="@color/mid_grey"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/tvDiscountExplore"
+        app:layout_constraintStart_toEndOf="@+id/tvDiscountCart"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
     <com.google.android.material.divider.MaterialDivider
@@ -121,13 +131,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:dividerColor="@color/mid_grey"
-        app:layout_constraintBottom_toBottomOf="@+id/tvMrpExplore"
-        app:layout_constraintEnd_toEndOf="@+id/tvMrpExplore"
-        app:layout_constraintStart_toStartOf="@+id/tvMrpExplore"
-        app:layout_constraintTop_toTopOf="@+id/tvMrpExplore" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvMrpCart"
+        app:layout_constraintEnd_toEndOf="@+id/tvMrpCart"
+        app:layout_constraintStart_toStartOf="@+id/tvMrpCart"
+        app:layout_constraintTop_toTopOf="@+id/tvMrpCart" />
 
     <TextView
-        android:id="@+id/tvSellingPriceExplore"
+        android:id="@+id/tvSellingPriceCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/asap"
@@ -136,12 +146,12 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tvMrpExplore"
-        app:layout_constraintStart_toEndOf="@+id/tvMrpExplore"
-        app:layout_constraintTop_toTopOf="@+id/tvMrpExplore" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvMrpCart"
+        app:layout_constraintStart_toEndOf="@+id/tvMrpCart"
+        app:layout_constraintTop_toTopOf="@+id/tvMrpCart" />
 
     <TextView
-        android:id="@+id/tvDiscountExplore"
+        android:id="@+id/tvDiscountCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="2dp"
@@ -154,9 +164,9 @@
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/ic_action_arrow_down"
         app:drawableTint="@color/green"
-        app:layout_constraintBottom_toBottomOf="@+id/tvMrpExplore"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMrpCart"
         app:layout_constraintStart_toStartOf="@+id/linearLayout6"
-        app:layout_constraintTop_toTopOf="@+id/tvMrpExplore" />
+        app:layout_constraintTop_toTopOf="@+id/tvMrpCart" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -179,7 +189,7 @@
             android:inputType="none"
             android:text="Qty: 1"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -224,21 +234,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
         android:layout_marginTop="8dp"
         android:background="@drawable/grey_stroke_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15">
 
         <TextView
-            android:id="@+id/tvDelete"
+            android:id="@+id/btnRemove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@drawable/grey_stroke_background"
+            android:fontFamily="@font/asap_medium"
             android:gravity="center"
             android:paddingStart="12dp"
             android:paddingTop="8dp"
@@ -247,8 +259,6 @@
             android:text="Remove"
             android:textColor="@color/mid_grey"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_weight="1"
             app:drawableStartCompat="@drawable/ic_action_delete" />
 
         <TextView
@@ -256,15 +266,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@drawable/grey_stroke_background"
+            android:fontFamily="@font/asap_medium"
             android:gravity="center"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:text="Save for later"
             android:textColor="@color/mid_grey"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_weight="1"
             app:drawableStartCompat="@drawable/ic_action_archive" />
 
         <TextView
@@ -272,7 +282,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@drawable/grey_stroke_background"
+            android:fontFamily="@font/asap_medium"
             android:gravity="center"
             android:paddingStart="4dp"
             android:paddingTop="8dp"
@@ -281,8 +293,6 @@
             android:text="Buy this now"
             android:textColor="@color/mid_grey"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_weight="1"
             app:drawableStartCompat="@drawable/ic_action_electric" />
 
     </LinearLayout>

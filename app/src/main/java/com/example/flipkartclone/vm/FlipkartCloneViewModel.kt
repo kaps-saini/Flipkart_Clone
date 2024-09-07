@@ -5,11 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.flipkartclone.data.user.UserCartItemsPref
 import com.example.flipkartclone.data.user.UserDetailsPref
 import com.example.flipkartclone.domain.interfaces.Repository
 import com.example.flipkartclone.domain.models.ItemDataModel
 import com.example.flipkartclone.domain.models.ItemModelItem
 import com.example.flipkartclone.domain.models.user.Address
+import com.example.flipkartclone.domain.models.user.CartItems
 import com.example.flipkartclone.utils.CheckNetwork
 import com.example.flipkartclone.utils.Resource
 import com.example.flipkartclone.utils.Status
@@ -24,7 +26,8 @@ class FlipkartCloneViewModel @Inject constructor(
     private val repository: Repository,
     val app:Application,
     private val network: CheckNetwork,
-    private val userDetailsPref: UserDetailsPref
+    private val userDetailsPref: UserDetailsPref,
+    private val userCartItemsPref: UserCartItemsPref
 ):ViewModel() {
 
     private var _itemsResult = MutableStateFlow<Resource<List<ItemModelItem>>>(Resource.Loading())
@@ -35,6 +38,9 @@ class FlipkartCloneViewModel @Inject constructor(
 
     private var _addressData: MutableLiveData<List<Address>?> = MutableLiveData()
     val addressData: LiveData<List<Address>?> get() = _addressData
+
+    private var _cartItemsData: MutableLiveData<List<CartItems>?> = MutableLiveData()
+    val cartItemsData: LiveData<List<CartItems>?> get() = _cartItemsData
 
     init {
         getDroppedItems()
@@ -69,6 +75,11 @@ class FlipkartCloneViewModel @Inject constructor(
     fun getAddress(){
         val data = userDetailsPref.getAddressListAsLive()
         _addressData.value = data
+    }
+
+    fun getItemsInCart(){
+        val data = userCartItemsPref.getCartListAsLive()
+        _cartItemsData.value = data
     }
 
 }

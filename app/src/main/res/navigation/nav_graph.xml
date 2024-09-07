@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_cart_to_authBottomSheet"
             app:destination="@id/authBottomSheet" />
+        <action
+            android:id="@+id/action_cart_to_itemDetails"
+            app:destination="@id/itemDetails" />
     </fragment>
     <fragment
         android:id="@+id/itemDetails"

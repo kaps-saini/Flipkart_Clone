@@ -63,7 +63,6 @@
                     android:id="@+id/llNoItemInCart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:background="@color/grey_lite_stroke"
                     android:orientation="vertical"
                     android:gravity="center_horizontal">
@@ -77,7 +76,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/asap_medium"
                         android:text="Missing Cart Items?"
                         android:textColor="@color/black"
                         android:layout_marginTop="8dp"
@@ -93,7 +92,6 @@
                         android:background="@color/dark_blue"
                         android:textAllCaps="false"
                         android:layout_marginTop="18dp"/>
-
 
                     <TextView
                         android:id="@+id/tvContinueShopping"
@@ -111,15 +109,17 @@
                     android:id="@+id/clCartView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout3"
+                        android:id="@+id/clAddressCartLayout"
                         android:layout_width="0dp"
                         android:layout_height="60dp"
+                        android:visibility="gone"
                         android:layout_marginStart="18dp"
                         android:layout_marginEnd="18dp"
                         android:orientation="horizontal"
@@ -135,6 +135,7 @@
                             android:text="Deliver to:"
                             android:textColor="@color/black"
                             android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -146,8 +147,7 @@
                             android:fontFamily="sans-serif-thin"
                             android:text="User name, 110093"
                             android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
+                            android:textSize="14sp"
                             app:layout_constraintBottom_toBottomOf="@+id/textView9"
                             app:layout_constraintStart_toEndOf="@+id/textView9"
                             app:layout_constraintTop_toTopOf="@+id/textView9" />
@@ -160,8 +160,9 @@
                             app:cardBackgroundColor="@color/grey_stroke"
                             app:cardCornerRadius="4dp"
                             app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvAddressTitle"
                             app:layout_constraintStart_toEndOf="@+id/tvAddressTitle"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toTopOf="@+id/tvAddressTitle">
 
                             <TextView
                                 android:id="@+id/tvAddressCategory"
@@ -172,30 +173,17 @@
                                 android:paddingEnd="12dp"
                                 android:text="Home"
                                 android:textColor="@color/mid_grey"
-                                android:textSize="14sp"
+                                android:textSize="12sp"
                                 android:textStyle="bold" />
 
                         </androidx.cardview.widget.CardView>
-
-                        <TextView
-                            android:id="@+id/tvFullAddress"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:text="Address desc"
-                            android:textColor="@color/light_grey"
-                            android:textSize="16sp"
-                            app:layout_constraintEnd_toEndOf="@+id/cardView2"
-                            app:layout_constraintStart_toStartOf="@+id/textView9"
-                            app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
                         <TextView
                             android:id="@+id/btnChangeAddress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/grey_stroke_background"
+                            android:fontFamily="@font/asap_medium"
                             android:gravity="center"
                             android:paddingStart="15dp"
                             android:paddingTop="4dp"
@@ -204,10 +192,8 @@
                             android:text="Change"
                             android:textColor="@color/dark_blue"
                             android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/tvFullAddress"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/cardView2"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.5" />
 
@@ -221,13 +207,12 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+                        app:layout_constraintTop_toBottomOf="@+id/clAddressCartLayout" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvCartItems"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -239,20 +224,22 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center"
+                        android:layout_marginStart="18dp"
                         android:text="Price Details"
                         android:textColor="@color/black"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
+                        android:fontFamily="@font/asap_medium"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/rvCartItems" />
 
                     <LinearLayout
                         android:id="@+id/priceDetailsLayout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="18dp"
                         android:layout_marginTop="16dp"
                         android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="@+id/constraintLayout3"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/textView11"
                         app:layout_constraintTop_toBottomOf="@+id/textView11">
 
@@ -281,6 +268,7 @@
                                     app:layout_constraintVertical_bias="0.5" />
 
                                 <TextView
+                                    android:id="@+id/tvItem1Price"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="end"
@@ -298,6 +286,7 @@
                         </LinearLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/discountLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -333,6 +322,7 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/deliverChargesLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -387,7 +377,7 @@
                                 android:text="Total Amount"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
-                                android:textStyle="bold"
+                                android:fontFamily="@font/asap_medium"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -402,7 +392,7 @@
                                 android:text="1000"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
-                                android:textStyle="bold"
+                                android:fontFamily="@font/asap_medium"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -424,7 +414,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/priceDetailsLayout" />
 
                     <TextView
-                        android:id="@+id/textView13"
+                        android:id="@+id/tvSaveOnOrder"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:paddingTop="8dp"
@@ -433,7 +423,7 @@
                         android:textAlignment="viewStart"
                         android:textColor="@color/green"
                         android:textSize="16sp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/asap_medium"
                         app:layout_constraintEnd_toEndOf="@+id/priceDetailsLayout"
                         app:layout_constraintStart_toStartOf="@+id/priceDetailsLayout"
                         app:layout_constraintTop_toBottomOf="@+id/materialDivider10" />
@@ -446,7 +436,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvSaveOnOrder" />
 
                     <TextView
                         android:id="@+id/tvAuthentiveCart"
@@ -457,21 +447,20 @@
                         android:text="Safe &amp; secure payments and easy \nreturns. 100% Authentic products"
                         android:textColor="@color/mid_grey"
                         android:textSize="16sp"
-                        android:textStyle="bold"
                         app:drawableStartCompat="@drawable/sheild"
                         app:layout_constraintBottom_toBottomOf="@+id/materialDivider8"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/materialDivider8"
-                        app:layout_constraintTop_toBottomOf="@+id/textView13"
+                        app:layout_constraintTop_toBottomOf="@+id/tvSaveOnOrder"
                         tools:ignore="HardcodedText" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="@+id/constraintLayout3"
+                        app:layout_constraintEnd_toEndOf="@+id/clAddressCartLayout"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
+                        app:layout_constraintStart_toStartOf="@+id/clAddressCartLayout"
                         app:layout_constraintTop_toBottomOf="@+id/materialDivider8">
 
                         <TextView
@@ -506,7 +495,7 @@
                             android:text="Final price"
                             android:textColor="@color/black"
                             android:textSize="20sp"
-                            android:textStyle="bold"
+                            android:fontFamily="@font/asap_medium"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/tvTotalMrp"
                             app:layout_constraintTop_toBottomOf="@+id/tvTotalMrp" />
@@ -548,11 +537,17 @@
                     android:text="Recently Viewed"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/asap_medium"
                     android:layout_marginStart="18dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/clCartView" />
 
+                <ProgressBar
+                    android:id="@+id/pbCartRecentlyViewed"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvRecentlyViewed"
                     android:layout_width="match_parent"
@@ -562,6 +557,8 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvSec" />
+
+
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
