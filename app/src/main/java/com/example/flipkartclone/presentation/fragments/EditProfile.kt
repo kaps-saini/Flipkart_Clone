@@ -114,6 +114,10 @@ class EditProfile : Fragment() {
     private fun fillUserDetails(){
         val userData = userDetailsPref.getUserDetails()
 
+        if (args.phoneNumber.isNotEmpty()){
+            binding.etMobileNumber.setText(args.phoneNumber)
+        }
+
         if (userData != null){
             binding.etFirstName.setText(userData.firstName.toString())
             binding.etLastName.setText(userData.lastName.toString())

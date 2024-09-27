@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 object Helpers {
 
@@ -25,6 +27,12 @@ object Helpers {
         }
         val dialog = builder.create()
         dialog.show()
+    }
+
+    fun getCurrentDateTime(): String {
+        val currentDateTime = LocalDateTime.now()  // Get current date and time
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")  // Define the format
+        return currentDateTime.format(formatter)  // Return the formatted date and time
     }
 
 }

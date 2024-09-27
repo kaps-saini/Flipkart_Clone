@@ -32,6 +32,12 @@ class UserCartItemsPref @Inject constructor(
         saveCartItem(cartList)
     }
 
+    fun clearCartItems() {
+        val cartList = getCartList().toMutableList()
+        cartList.clear()
+        saveCartItem(cartList)
+    }
+
     // Get the list of Addresses
     fun getCartList(): List<CartItems> {
         val json = prefs.getString("CartList", null)

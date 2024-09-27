@@ -99,7 +99,7 @@ class ItemDetails : Fragment() {
             if (binding.btnAddToCart.text.contains(Status.GoToCart.toString(),false)){
                 findNavController().navigate(R.id.action_itemDetails_to_cart2)
             }else if (binding.btnAddToCart.text.contains(Status.AddToCart.toString(),false)){
-                userCartItemsPref.addCartItem(CartItems(itemDetail,itemPrice,rating))
+                userCartItemsPref.addCartItem(CartItems(itemDetail,itemPrice,rating,1))
                 binding.btnAddToCart.text = Status.GoToCart.toString()
                 Helpers.makeSnackBar(requireView(),"Added to cart successfully")
             }

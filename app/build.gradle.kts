@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -6,6 +7,10 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-parcelize")
     alias(libs.plugins.google.gms.google.services)
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 android {
@@ -40,10 +45,13 @@ android {
     }
     buildFeatures{
         dataBinding = true
+        viewBinding = true
     }
 }
 
 dependencies {
+
+   // implementation project(path:':library1')
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -92,4 +100,12 @@ dependencies {
 
     //country code picker
     implementation("com.hbb20:ccp:2.7.1")
+
+    //razorpay
+    implementation ("com.razorpay:checkout:1.6.40")
+
+    val epoxyVersion = "5.1.4"
+    implementation ("com.airbnb.android:epoxy:$epoxyVersion")
+    implementation ("com.airbnb.android:epoxy-databinding:$epoxyVersion")
+    kapt ("com.airbnb.android:epoxy-processor:$epoxyVersion")
 }

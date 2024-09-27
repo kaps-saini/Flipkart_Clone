@@ -3,10 +3,12 @@ package com.example.flipkartclone.presentation.fragments
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.Arrangement
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,11 +16,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.flipkartclone.R
-import com.example.flipkartclone.adapter.BrandsForYouAdapter
+import com.example.flipkartclone.adapter.BrandsForYouController
 import com.example.flipkartclone.adapter.CategoriesAdapter
 import com.example.flipkartclone.adapter.GiftingAdapter
 import com.example.flipkartclone.adapter.ImageSliderAdapter
@@ -32,7 +36,6 @@ import com.example.flipkartclone.utils.Status
 import com.example.flipkartclone.vm.FlipkartCloneViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import me.relex.circleindicator.CircleIndicator3
 
 @AndroidEntryPoint
 class Dashboard : Fragment() {
@@ -46,10 +49,12 @@ class Dashboard : Fragment() {
     private val viewModel by viewModels<FlipkartCloneViewModel>()
 
     private lateinit var categoriesAdapter: CategoriesAdapter
-    private lateinit var brandsForYouAdapter: BrandsForYouAdapter
+    private lateinit var brandsForYouController: BrandsForYouController
     private lateinit var giftingAdapter: GiftingAdapter
     private lateinit var justDroppedDeals: JustDroppedDeals
     private lateinit var sponsoredAdapter: SponsoredAdapter
+
+    var rvState :Parcelable? = null
 
     private val imageList = listOf(
         "https://firebasestorage.googleapis.com/v0/b/taskmanager-6f187.appspot.com/o/images%2F4878cb0e-18be-45cb-bf23-e48f99af8d6c.jpg?alt=media&token=4dca47e0-145c-4e58-ba2e-b5463ca95ba4",
@@ -100,9 +105,12 @@ class Dashboard : Fragment() {
             Helpers.makeSnackBar(requireView(),data)
         }
 
-        brandsForYouAdapter = BrandsForYouAdapter(){ position, itemData ->
-            Helpers.makeSnackBar(requireView(),itemData.title)
+        val brandsForYouController = BrandsForYouController{ data->
+            Helpers.makeSnackBar(requireView(),data.title)
         }
+
+        binding.rvBrandsForYou.setController(brandsForYouController)
+        binding.rvBrandsForYou.addItemDecoration(DividerItemDecoration(requireActivity(),RecyclerView.VERTICAL))
 
         giftingAdapter = GiftingAdapter(){ position, itemData ->
             Helpers.makeSnackBar(requireView(),itemData.title)
@@ -117,15 +125,17 @@ class Dashboard : Fragment() {
             Helpers.makeSnackBar(requireView(),itemData.title)
         }
 
+        rvState = savedInstanceState?.getParcelable("rvState")
+
         setupCategoryRv()
-        setupBrandsForYouRv()
+        //setupBrandsForYouRv()
         setupGiftingRv()
         setupJustDroppedDealsRv()
         setupSponsoredRv()
 
         viewModel.getAllItems()
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+           // viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.itemResult.collect { response ->
                     when (response) {
                         is Resource.Error -> {
@@ -147,13 +157,14 @@ class Dashboard : Fragment() {
                             binding.viewNoInternet.visibility = View.GONE
                             binding.appbar.visibility = View.VISIBLE
                             hideProgressBar()
-                            brandsForYouAdapter.differ.submitList(response.data)
+                            brandsForYouController.brandsData = response.data!!
+                           // brandsForYouAdapter.differ.submitList(response.data)
                             giftingAdapter.differ.submitList(response.data?.subList(0, 4))
                             sponsoredAdapter.differ.submitList(response.data)
                         }
                     }
                 }
-            }
+           // }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -197,17 +208,25 @@ class Dashboard : Fragment() {
     override fun onResume() {
         super.onResume()
         sliderHandler.postDelayed(sliderRunnable,3000)
+       binding.rvBrandsForYou.layoutManager?.onRestoreInstanceState(rvState)
     }
 
     override fun onPause() {
         super.onPause()
         sliderHandler.removeCallbacks(sliderRunnable)
+        rvState = binding.rvBrandsForYou.layoutManager?.onSaveInstanceState()
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
         _binding = null
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putParcelable("rvState",rvState)
     }
 
     private fun setupCategoryRv(){
@@ -218,13 +237,13 @@ class Dashboard : Fragment() {
         }
     }
 
-    private fun setupBrandsForYouRv(){
-        binding.rvBrandsForYou.apply {
-            this.adapter = brandsForYouAdapter
-            this.layoutManager = LinearLayoutManager(
-                requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        }
-    }
+//    private fun setupBrandsForYouRv(){
+//        binding.rvBrandsForYou.apply {
+//            this.adapter = brandsForYouAdapter
+//            this.layoutManager = LinearLayoutManager(
+//                requireContext(),LinearLayoutManager.HORIZONTAL,false)
+//        }
+//    }
 
     private fun setupGiftingRv(){
         binding.rvGifting.apply {

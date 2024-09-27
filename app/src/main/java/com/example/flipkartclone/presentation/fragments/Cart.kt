@@ -147,7 +147,7 @@ class Cart : Fragment() {
             binding.tvSaveOnOrder.text = "You will save ₹$totalDiscount on this order"
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch{
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.droppedItems.collect { response ->
                     when (response) {
@@ -173,8 +173,17 @@ class Cart : Fragment() {
             }
         }
 
-        binding.tvAddressTitle.text = userDetailsPref.getAddressList()[0].name
-        binding.tvAddressCategory.text = userDetailsPref.getAddressList()[0].type
+        if (userDetailsPref.getAddressList().isNotEmpty()){
+            binding.clAddressCartLayout.visibility = View.VISIBLE
+            binding.tvAddressTitle.text = userDetailsPref.getAddressList()[0].name
+            binding.tvAddressCategory.text = userDetailsPref.getAddressList()[0].type
+        }else{
+            binding.clAddressCartLayout.visibility = View.GONE
+        }
+
+        binding.btnPlaceOrder.setOnClickListener {
+            findNavController().navigate(R.id.action_cart_to_orderSummary)
+        }
 
         return binding.root
     }

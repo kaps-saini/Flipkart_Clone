@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Flipkart Clone"
 include(":app")
- 
+include(":categories")
+include(":library1")
