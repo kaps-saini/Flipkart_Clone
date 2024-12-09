@@ -69,7 +69,7 @@ class ItemDetails : Fragment() {
         viewPager2 = binding.viewPageProductView
         viewPager2.adapter = adapter
         binding.productImageIndicator.setViewPager(viewPager2)
-        exploreAdapter = ExploreAdapter(){ position, itemData ->
+        exploreAdapter = ExploreAdapter { position, itemData ->
             Helpers.makeSnackBar(requireView(),itemData.title)
         }
 

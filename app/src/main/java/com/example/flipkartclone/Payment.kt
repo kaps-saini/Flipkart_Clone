@@ -58,4 +58,8 @@ class Payment : Fragment() {
     }
 
 
+    private fun downloadInvoice(){
+
+    }
+
 }

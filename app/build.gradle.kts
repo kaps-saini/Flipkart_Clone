@@ -108,4 +108,5 @@ dependencies {
     implementation ("com.airbnb.android:epoxy:$epoxyVersion")
     implementation ("com.airbnb.android:epoxy-databinding:$epoxyVersion")
     kapt ("com.airbnb.android:epoxy-processor:$epoxyVersion")
+
 }

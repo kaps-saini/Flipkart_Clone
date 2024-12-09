@@ -14,12 +14,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.navigateUp
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.flipkartclone.adapter.CartItem
+import com.example.flipkartclone.data.user.OrderedItemPref
 import com.example.flipkartclone.data.user.UserCartItemsPref
 import com.example.flipkartclone.data.user.UserDetailsPref
 import com.example.flipkartclone.databinding.FragmentOrderSummaryBinding
 import com.example.flipkartclone.helper.Helpers
+import com.example.flipkartclone.utils.PaymentStatus
 import com.example.flipkartclone.utils.Util.PAYMENT_API_KEY
 import com.example.flipkartclone.vm.FlipkartCloneViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -32,7 +35,7 @@ import org.json.JSONObject
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class OrderSummary : Fragment() {
+class OrderSummary : Fragment(),PaymentResultWithDataListener {
 
     private var _binding: FragmentOrderSummaryBinding? = null
     private val binding get() = _binding!!
@@ -41,6 +44,8 @@ class OrderSummary : Fragment() {
     lateinit var userCartItemsPref: UserCartItemsPref
     @Inject
     lateinit var userDetailsPref: UserDetailsPref
+    @Inject
+    lateinit var userOrderedItemPref: OrderedItemPref
     private val viewModel by viewModels<FlipkartCloneViewModel>()
     private lateinit var cartItem: CartItem
     private val auth = FirebaseAuth.getInstance()
@@ -87,12 +92,36 @@ class OrderSummary : Fragment() {
 
         setupObservers()
         userEvents()
+        paymentResults()
     }
+
+    private fun paymentResults() {
+        PaymentStatus.isPaymentCompleted = { isCompleted, paymentData ->
+            requireActivity().runOnUiThread {
+                if (isCompleted) {
+                    val userOrderList = userCartItemsPref.getCartList()
+                    userOrderedItemPref.addOrderedItemList(userOrderList)
+                    userCartItemsPref.clearCartItems()
+                    if (isAdded && isVisible) {
+                        findNavController().navigate(R.id.action_orderSummary_to_payment)
+                    } else {
+                        Log.e("PaymentFragment", "Fragment not ready for navigation")
+                    }
+                } else {
+                    Helpers.makeSnackBar(requireView(), "Payment failed")
+                }
+            }
+        }
+    }
+
 
     private fun userEvents() {
         binding.btnContinueSummary.setOnClickListener {
-            findNavController().navigate(R.id.action_orderSummary_to_payment)
+           // findNavController().navigate(R.id.action_orderSummary_to_payment)
             startPayment()
+        }
+        binding.ivBackSummary.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 
@@ -122,7 +151,8 @@ class OrderSummary : Fragment() {
                     totalDiscount += (price * discountPercent) / 100
                 }
             } else {
-                showProgressBar()
+                findNavController().navigateUp()
+                //showProgressBar()
             }
 
             // Update the UI with the calculated values
@@ -192,14 +222,14 @@ class OrderSummary : Fragment() {
         }
     }
 
-//    override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
-//        findNavController().navigate(R.id.action_orderSummary_to_payment)
-//        Log.i("pay",p1.toString())
-//    }
-//
-//    override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
-//        Helpers.makeSnackBar(requireView(),"Payment failed")
-//        Log.i("pay",p2.toString())
-//    }
+    override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
+        findNavController().navigate(R.id.action_orderSummary_to_payment)
+        Log.i("pay",p1.toString())
+    }
+
+    override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
+        Helpers.makeSnackBar(requireView(),"Payment failed")
+        Log.i("pay",p2.toString())
+    }
 
 }

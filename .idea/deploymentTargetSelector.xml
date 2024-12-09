@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-08-26T15:53:43.409904900Z">
+        <DropdownSelection timestamp="2024-12-05T16:15:31.928315700Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="Default" identifier="serial=172.16.2.12:35079;connection=36090039" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\HP\.android\avd\zebra_TC21_API_27.avd" />
             </handle>
           </Target>
         </DropdownSelection>

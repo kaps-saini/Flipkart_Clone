@@ -8,5 +8,6 @@ data class CartItems(
     val item: Item? = null,
     val pricing: Pricing? = null,
     val ratings: Ratings? = null,
-    var quantity: Int = 1
+    var quantity: Int = 1,
+    var orderId:String = "001"
 )

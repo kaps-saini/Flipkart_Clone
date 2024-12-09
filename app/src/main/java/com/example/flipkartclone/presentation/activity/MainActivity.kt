@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -13,6 +14,7 @@ import com.example.flipkartclone.R
 import com.example.flipkartclone.data.user.OrderedItemPref
 import com.example.flipkartclone.data.user.UserCartItemsPref
 import com.example.flipkartclone.helper.Helpers
+import com.example.flipkartclone.utils.PaymentStatus
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.razorpay.PaymentData
 import com.razorpay.PaymentResultWithDataListener
@@ -20,15 +22,15 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(),PaymentResultWithDataListener {
+class MainActivity : AppCompatActivity() {
 
     private  lateinit var btmNav: BottomNavigationView
     private lateinit var navController: NavController
     @Inject
     lateinit var userCartItemsPref:UserCartItemsPref
 
-    @Inject
-    lateinit var userOrderedItemPref: OrderedItemPref
+
+    private val TAG = "Payment"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,14 +79,23 @@ class MainActivity : AppCompatActivity(),PaymentResultWithDataListener {
         }
     }
 
-    override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
-        val userOrderList = userCartItemsPref.getCartList()
-        userOrderedItemPref.addOrderedItemList(userOrderList)
-        userCartItemsPref.clearCartItems()
-    }
+//    override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
+//
+////        Log.i(TAG, p1?.data?.get("amount").toString())
+////        Log.i(TAG, p1?.data?.get("name").toString())
+////        Log.i(TAG, p1?.data?.get("date").toString())
+//        PaymentStatus.isPaymentCompleted?.invoke(true,p1)
+//    }
 
-    override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
-        Log.i("pay",p1.toString())
-        Toast.makeText(this,"Payment failed",Toast.LENGTH_SHORT).show()
+//    override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
+//        Log.i("pay",p1.toString())
+//        //Toast.makeText(this,"Payment failed",Toast.LENGTH_SHORT).show()
+//       // navController.navigate(R.id.orderSummary)
+//        PaymentStatus.isPaymentCompleted?.invoke(false,p2)
+//    }
+//
+    override fun onDestroy() {
+        super.onDestroy()
+        PaymentStatus.isPaymentCompleted = null
     }
 }

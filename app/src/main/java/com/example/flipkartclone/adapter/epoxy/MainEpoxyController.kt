@@ -4,6 +4,7 @@ import com.airbnb.epoxy.EpoxyController
 import com.example.flipkartclone.R
 import com.example.flipkartclone.adapter.epoxy.helper.ViewBindingKotlinModel
 import com.example.flipkartclone.databinding.EpoxyLayoutContentBinding
+import com.example.flipkartclone.databinding.SkuListLayoutBinding
 import com.google.android.gms.common.util.CollectionUtils.listOf
 
 class MainEpoxyController :EpoxyController(){
@@ -43,10 +44,10 @@ class MainEpoxyController :EpoxyController(){
 
     data class CategoryEpoxyModel(
         val sampleModel: SampleModel
-    ):ViewBindingKotlinModel<EpoxyLayoutContentBinding>(R.layout.epoxy_layout_content) {
+    ):ViewBindingKotlinModel<SkuListLayoutBinding>(R.layout.sku_list_layout) {
 
-        override fun EpoxyLayoutContentBinding.bind() {
-            tvTitleEpoxy.text = sampleModel.content
+        override fun SkuListLayoutBinding.bind() {
+            tvSkuName.text = sampleModel.content
         }
     }
 

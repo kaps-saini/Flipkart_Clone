@@ -33,6 +33,7 @@
                 app:layout_scrollFlags="scroll|enterAlways">
 
                 <ImageView
+                    android:id="@+id/ivBackSummary"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:src="@drawable/ic_action_back_black"
