@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.flipkartclone.R
+import com.example.flipkartclone.data.user.OrderedItemPref
 import com.example.flipkartclone.data.user.UserDetailsPref
 import com.example.flipkartclone.databinding.FragmentAccountBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +24,8 @@ class Account : Fragment() {
     private val auth = FirebaseAuth.getInstance()
     @Inject
     lateinit var userDetailsPref: UserDetailsPref
+    @Inject
+    lateinit var userOrderedItemPref: OrderedItemPref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +46,7 @@ class Account : Fragment() {
 
         binding.btnLogout.setOnClickListener {
             auth.signOut()
+            userOrderedItemPref.clearOrderedItems()
             binding.llLogin.visibility = View.VISIBLE
             binding.appBar.visibility = View.GONE
             binding.tvUserName.text = "Log in to get exclusive offers"

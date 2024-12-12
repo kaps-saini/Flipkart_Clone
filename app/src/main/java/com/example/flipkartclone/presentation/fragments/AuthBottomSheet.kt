@@ -47,6 +47,10 @@ class AuthBottomSheet : Fragment() {
             }
         }
 
+        binding.ivCloseAuth.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
         return binding.root
     }
 

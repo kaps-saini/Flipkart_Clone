@@ -18,8 +18,11 @@
         android:theme="@style/Theme.FlipkartClone"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.activity.OrderSummaryActivity"
+            android:exported="true" />
+        <activity
             android:name=".presentation.activity.MainActivity"
-                    android:exported="true">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

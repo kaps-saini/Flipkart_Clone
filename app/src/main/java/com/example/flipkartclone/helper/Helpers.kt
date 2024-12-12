@@ -6,6 +6,8 @@ import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.UUID
+import kotlin.random.Random
 
 object Helpers {
 
@@ -35,4 +37,9 @@ object Helpers {
         return currentDateTime.format(formatter)  // Return the formatted date and time
     }
 
+    fun generateOrderId(): String {
+        val timestamp = System.currentTimeMillis()
+        val randomSuffix = UUID.randomUUID().toString().take(8)
+        return "ORDER-$timestamp-$randomSuffix"
+    }
 }

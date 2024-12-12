@@ -3,6 +3,7 @@ package com.example.flipkartclone.data.user
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.flipkartclone.domain.models.user.CartItems
+import com.example.flipkartclone.domain.models.user.OrderedItems
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -16,37 +17,37 @@ class OrderedItemPref @Inject constructor(
     private val editor: SharedPreferences.Editor = prefs.edit()
     private val gson = Gson()
 
-    // Add an Address to the list
-    fun addOrderedItem(newCartItem: CartItems) {
+//    // Add an Address to the list
+    fun addOrderedItem(newOrderItem: OrderedItems) {
         val orderedList = getOrderedList().toMutableList()
-        orderedList.add(newCartItem)
+        orderedList.add(newOrderItem)
         saveOrderedItem(orderedList)
     }
 
-    fun addOrderedItemList(newCartItem: List<CartItems>) {
-        val cartList = getOrderedList().toMutableList()
-        cartList.addAll(newCartItem)
-        saveOrderedItem(cartList)
+    fun addOrderedItemList(newOrderItem: List<OrderedItems>) {
+        val orderedItems = getOrderedList().toMutableList()
+        orderedItems.addAll(newOrderItem)
+        saveOrderedItem(orderedItems)
     }
 
-    // Delete an Address from the list
-    fun deleteOrderedItem(cartItems: CartItems) {
-        val orderedList = getOrderedList().toMutableList()
-        orderedList.remove(cartItems)
-        saveOrderedItem(orderedList)
-    }
-
+//    // Delete an Address from the list
+//    fun deleteOrderedItem(cartItems: CartItems) {
+//        val orderedList = getOrderedList().toMutableList()
+//        orderedList.remove(cartItems)
+//        saveOrderedItem(orderedList)
+//    }
+//
     fun clearOrderedItems() {
         val orderedList = getOrderedList().toMutableList()
         orderedList.clear()
-        saveOrderedItem(orderedList)
+        //saveOrderedItem(orderedList)
     }
 
     // Get the list of Addresses
-    fun getOrderedList(): List<CartItems> {
+    private fun getOrderedList(): List<OrderedItems> {
         val json = prefs.getString("OrderedList", null)
         return if (json != null) {
-            val type = object : TypeToken<List<CartItems>>() {}.type
+            val type = object : TypeToken<List<OrderedItems>>() {}.type
             gson.fromJson(json, type)
         } else {
             emptyList()
@@ -64,7 +65,7 @@ class OrderedItemPref @Inject constructor(
     }
 
     // Save the Address list to SharedPreferences
-    private fun saveOrderedItem(cartList: List<CartItems>) {
+    private fun saveOrderedItem(cartList: List<OrderedItems>) {
         val json = gson.toJson(cartList)
         editor.putString("OrderedList", json)
         editor.apply()

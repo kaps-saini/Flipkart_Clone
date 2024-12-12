@@ -1,24 +1,20 @@
-package com.example.flipkartclone
+package com.example.flipkartclone.presentation.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import com.example.flipkartclone.adapter.CartItem
+import androidx.navigation.fragment.findNavController
+import com.example.flipkartclone.R
 import com.example.flipkartclone.adapter.RecentlyViewedItems
 import com.example.flipkartclone.data.user.OrderedItemPref
-import com.example.flipkartclone.data.user.UserCartItemsPref
 import com.example.flipkartclone.data.user.UserDetailsPref
-import com.example.flipkartclone.databinding.FragmentCartBinding
 import com.example.flipkartclone.databinding.FragmentPaymentBinding
 import com.example.flipkartclone.vm.FlipkartCloneViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.razorpay.PaymentResultListener
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -49,6 +45,22 @@ class Payment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        fetchData()
+        userEvents()
+    }
+
+    private fun fetchData() {
+
+    }
+
+    private fun userEvents() {
+        binding.ivBackPayment.setOnClickListener {
+            findNavController().navigate(R.id.action_payment_to_dashboard)
+        }
+
+        binding.tvDownloadInvoice.setOnClickListener {
+
+        }
     }
 
     override fun onDestroy() {

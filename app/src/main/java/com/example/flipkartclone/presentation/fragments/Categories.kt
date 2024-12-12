@@ -9,13 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flipkartclone.CategoryAdapter
 import com.example.flipkartclone.R
 import com.example.flipkartclone.adapter.epoxy.MainEpoxyController
-import com.example.flipkartclone.adapter.epoxy.SampleModel
 import com.example.flipkartclone.adapter.epoxy.getSampleData
 import com.example.flipkartclone.databinding.FragmentCategoriesBinding
-import com.example.flipkartclone.databinding.FragmentExploreBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

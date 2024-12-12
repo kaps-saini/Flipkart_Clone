@@ -27,6 +27,7 @@ class EditProfile : Fragment() {
     lateinit var userDetailsPref: UserDetailsPref
     private val args by navArgs<EditProfileArgs>()
     private val auth = FirebaseAuth.getInstance()
+    private lateinit var userPhoneNumber:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -93,8 +94,9 @@ class EditProfile : Fragment() {
     private fun addUserDetails(){
         val firstName = binding.etFirstName.text.toString()
         val lastName = binding.etLastName.text.toString()
-        val userPhoneNumber = args.phoneNumber
-
+        if (args.phoneNumber.isNotEmpty()) {
+            userPhoneNumber = args.phoneNumber
+        }
         var isAllFilled = true
 
         if (firstName.isEmpty()){

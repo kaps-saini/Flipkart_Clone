@@ -1,14 +1,13 @@
 package com.example.flipkartclone.presentation.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.ThemedSpinnerAdapter.Helper
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,9 +22,9 @@ import com.example.flipkartclone.adapter.RecentlyViewedItems
 import com.example.flipkartclone.data.user.UserCartItemsPref
 import com.example.flipkartclone.data.user.UserDetailsPref
 import com.example.flipkartclone.databinding.FragmentCartBinding
-import com.example.flipkartclone.databinding.FragmentCategoriesBinding
 import com.example.flipkartclone.domain.models.user.CartItems
 import com.example.flipkartclone.helper.Helpers
+import com.example.flipkartclone.presentation.activity.OrderSummaryActivity
 import com.example.flipkartclone.utils.Resource
 import com.example.flipkartclone.utils.Status
 import com.example.flipkartclone.vm.FlipkartCloneViewModel
@@ -33,9 +32,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import okhttp3.internal.wait
 import javax.inject.Inject
-import kotlin.math.log
 
 @AndroidEntryPoint
 class Cart : Fragment() {
@@ -182,7 +179,9 @@ class Cart : Fragment() {
         }
 
         binding.btnPlaceOrder.setOnClickListener {
-            findNavController().navigate(R.id.action_cart_to_orderSummary)
+            val intent = Intent(this.requireActivity(), OrderSummaryActivity::class.java)
+            startActivity(intent)
+          //  findNavController().navigate(R.id.action_cart_to_orderSummary)
         }
 
         return binding.root

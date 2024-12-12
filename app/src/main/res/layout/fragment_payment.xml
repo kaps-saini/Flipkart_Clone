@@ -5,7 +5,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Payment">
+    tools:context=".presentation.fragments.Payment">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="56dp">
@@ -50,7 +50,6 @@
                 android:id="@+id/tv_order_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Order ID: OD14322231521501900"
                 android:paddingStart="18dp"
                 android:paddingEnd="18dp"
                 android:paddingTop="8dp"
@@ -92,7 +91,6 @@
                 android:id="@+id/tvRatingBarPayment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
                 android:scaleX="0.5"
                 android:scaleY="0.5"
                 android:progressTint="@color/green"/>
@@ -155,7 +153,7 @@
                 android:id="@+id/tvAddressNamePayment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kapil Saini"
+
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="8dp"
@@ -166,7 +164,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="C-1, Saboli Extension, Saboli, Crimination ground\nNew Delhi - 110093"
+
                 android:textSize="16sp"
                 android:layout_marginStart="18dp"/>
 
@@ -175,7 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="1234567890"
+
                 android:textSize="16sp"
                 android:layout_marginStart="18dp"/>
 
@@ -276,7 +274,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text=" ₹240"
+
                             android:layout_weight="1"
                             android:textColor="@color/black"
                             android:textSize="16sp"/>
@@ -302,7 +300,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text=" ₹240"
+
                             android:layout_weight="1"
                             android:textColor="@color/black"
                             android:textSize="16sp"/>
@@ -390,7 +388,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text=" ₹2040"
+
                         android:layout_weight="1"
                         android:textColor="@color/black"
                         android:textSize="16sp"/>

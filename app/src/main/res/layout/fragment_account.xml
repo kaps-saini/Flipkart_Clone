@@ -208,6 +208,22 @@
                         app:drawableStartCompat="@drawable/ic_action_profile"/>
 
                     <TextView
+                        android:id="@+id/tvOrders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Orders"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_marginTop="8dp"
+                        app:drawableEndCompat="@drawable/ic_action_arrow_right"
+                        android:drawablePadding="12dp"
+                        android:drawableTint="@color/blue"
+                        app:drawableStartCompat="@drawable/orders"/>
+
+                    <TextView
                         android:id="@+id/tvSavedAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -233,6 +249,7 @@
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
                         android:layout_marginTop="8dp"
+                        android:drawableTint="@color/blue"
                         app:drawableEndCompat="@drawable/ic_action_arrow_right"
                         android:drawablePadding="12dp"
                         app:drawableStartCompat="@drawable/icon_translate"/>
@@ -247,6 +264,8 @@
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
                         android:drawablePadding="12dp"
+                        android:layout_marginTop="8dp"
+                        android:drawableTint="@color/blue"
                         app:drawableStartCompat="@drawable/icon_setting_notification"
                         app:drawableEndCompat="@drawable/ic_action_arrow_right" />
 
@@ -260,6 +279,8 @@
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
                         android:drawablePadding="12dp"
+                        android:layout_marginTop="8dp"
+                        android:drawableTint="@color/blue"
                         app:drawableStartCompat="@drawable/icon_help"
                         app:drawableEndCompat="@drawable/ic_action_arrow_right" />
                 </LinearLayout>
