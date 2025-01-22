@@ -54,10 +54,10 @@ class OrderedItemPref @Inject constructor(
         }
     }
 
-    fun getOrderedListAsLive(): List<CartItems>? {
+    fun getOrderedListAsLive(): List<OrderedItems>? {
         val json = prefs.getString("OrderedList", null)
         return if (json != null) {
-            val type = object : TypeToken<List<CartItems>>() {}.type
+            val type = object : TypeToken<List<OrderedItems>>() {}.type
             gson.fromJson(json, type)
         } else {
             null

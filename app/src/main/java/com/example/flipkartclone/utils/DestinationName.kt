@@ -5,4 +5,5 @@ enum class DestinationName {
     PAYMENT_LAYOUT,
     CART_LAYOUT,
     AUTH_LAYOUT,
+    MY_ORDERS
 }

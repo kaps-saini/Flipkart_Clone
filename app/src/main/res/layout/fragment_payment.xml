@@ -53,6 +53,7 @@
                 android:paddingStart="18dp"
                 android:paddingEnd="18dp"
                 android:paddingTop="8dp"
+                android:text="orderid123"
                 android:paddingBottom="8dp"
                 android:textSize="14sp"/>
 
@@ -61,44 +62,104 @@
                 android:layout_height="1dp"
                 app:dividerColor="@color/grey_lite_stroke"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvProductsOrdered"
+            <LinearLayout
+                android:id="@+id/linearLayout7"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5">
 
 
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Name"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvItemDesc"
+                        android:layout_width="210dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="The Derma co. Face wash Niacidjj"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="264"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ivOrderImage"
+                    android:layout_width="90dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="120dp"
+                    android:src="@drawable/sample_image" />
+
+            </LinearLayout>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 app:dividerColor="@color/grey_lite_stroke"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="18dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:textSize="14sp"
-                android:text="Rate your experience"/>
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingStart="18dp"-->
+<!--                android:paddingTop="8dp"-->
+<!--                android:paddingBottom="8dp"-->
+<!--                android:textSize="14sp"-->
+<!--                android:text="Rate your experience"/>-->
 
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                app:dividerColor="@color/grey_lite_stroke"/>
+<!--            <com.google.android.material.divider.MaterialDivider-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                app:dividerColor="@color/grey_lite_stroke"/>-->
 
-            <RatingBar
-                android:id="@+id/tvRatingBarPayment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
-                android:progressTint="@color/green"/>
+<!--            <RatingBar-->
+<!--                android:id="@+id/tvRatingBarPayment"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:scaleX="0.5"-->
+<!--                android:scaleY="0.5"-->
+<!--                android:progressTint="@color/green"/>-->
 
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="6dp"
-                app:dividerColor="@color/grey_lite_stroke"/>
+<!--            <com.google.android.material.divider.MaterialDivider-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="6dp"-->
+<!--                app:dividerColor="@color/grey_lite_stroke"/>-->
 
             <TextView
                 android:id="@+id/tvDownloadInvoice"
@@ -153,7 +214,6 @@
                 android:id="@+id/tvAddressNamePayment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="8dp"
@@ -163,19 +223,18 @@
                 android:id="@+id/tv_address_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
                 android:layout_marginTop="8dp"
-
-                android:textSize="16sp"
-                android:layout_marginStart="18dp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tv_address_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="18dp"
 
-                android:textSize="16sp"
-                android:layout_marginStart="18dp"/>
+                android:layout_marginTop="4dp"
+                android:textSize="16sp" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"

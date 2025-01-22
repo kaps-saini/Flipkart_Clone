@@ -247,7 +247,7 @@ class OrderSummaryActivity : AppCompatActivity(),PaymentResultWithDataListener {
         userOrderedItemPref.addOrderedItem(orderItems)
         userCartItemsPref.clearCartItems()
         val intent = Intent(this,MainActivity::class.java)
-        intent.putExtra(DESTINATION_ID,DestinationName.PAYMENT_LAYOUT.name)
+        intent.putExtra(DESTINATION_ID,DestinationName.MY_ORDERS.name)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK,)
         startActivity(intent)

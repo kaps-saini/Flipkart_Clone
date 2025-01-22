@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
 
         val intent = intent.getStringExtra(Util.DESTINATION_ID)
         when (intent) {
-            DestinationName.PAYMENT_LAYOUT.name -> {
-                navController.navigate(R.id.payment)
+            DestinationName.MY_ORDERS.name -> {
+                navController.navigate(R.id.myOrders)
             }
             DestinationName.CART_LAYOUT.name -> {
                 navController.navigate(R.id.cart)
@@ -62,7 +62,6 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.authBottomSheet)
             }
         }
-
     }
 
     override fun onSupportNavigateUp(): Boolean {

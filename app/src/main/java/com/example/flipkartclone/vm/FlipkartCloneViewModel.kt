@@ -96,9 +96,9 @@ class FlipkartCloneViewModel @Inject constructor(
         _cartItemsData.value = data
     }
 
-    fun getItemsOrdered(){
-        val data = userOrderedItemPref.getOrderedListAsLive()
-        _orderedItemData.value = data
-    }
+//    fun getItemsOrdered(){
+//        val data = userOrderedItemPref.getOrderedListAsLive()
+//        _orderedItemData.value = data
+//    }
 
 }
