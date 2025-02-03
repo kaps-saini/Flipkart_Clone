@@ -42,7 +42,7 @@ class Explore : Fragment() {
     private lateinit var fakeProductAdapter: FakeProductAdapter
     private lateinit var fakeProductLoadStateAdapter :FakeProductLoadStateAdapter
     @Inject
-    private lateinit var network: CheckNetwork
+    lateinit var network: CheckNetwork
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
