@@ -11,17 +11,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.flipkartclone.R
 import com.example.flipkartclone.domain.models.ItemModelItem
+import com.example.flipkartclone.domain.models.Sponsor
 
 
 class SponsoredAdapter(
-    private val onClick:(position:Int,itemData: ItemModelItem) -> Unit
+    private val onClick:(position:Int,itemData: Sponsor) -> Unit
 ): RecyclerView.Adapter<SponsoredAdapter.BrandsViewHolder>() {
 
     inner class BrandsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val itemImage: ImageView = itemView.findViewById(R.id.ivSponsoredImage)
         val itemTitle: TextView = itemView.findViewById(R.id.tvSponsoredTitle)
 
-        fun bind(itemModelItem: ItemModelItem){
+        fun bind(itemModelItem: Sponsor){
             itemTitle.text = itemModelItem.title
             Glide.with(itemView.context)
                 .load(itemModelItem.images[0])
@@ -29,12 +30,12 @@ class SponsoredAdapter(
         }
     }
 
-    private val diffUtil = object : DiffUtil.ItemCallback<ItemModelItem>() {
-        override fun areItemsTheSame(oldItem: ItemModelItem, newItem: ItemModelItem): Boolean {
+    private val diffUtil = object : DiffUtil.ItemCallback<Sponsor>() {
+        override fun areItemsTheSame(oldItem: Sponsor, newItem: Sponsor): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: ItemModelItem, newItem: ItemModelItem): Boolean {
+        override fun areContentsTheSame(oldItem: Sponsor, newItem: Sponsor): Boolean {
             return oldItem == newItem
         }
     }

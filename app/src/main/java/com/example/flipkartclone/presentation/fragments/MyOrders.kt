@@ -1,4 +1,4 @@
-package com.example.flipkartclone
+package com.example.flipkartclone.presentation.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.flipkartclone.adapter.Orders
 import com.example.flipkartclone.data.user.OrderedItemPref
 import com.example.flipkartclone.databinding.FragmentMyOrdersBinding
-import com.example.flipkartclone.databinding.FragmentPaymentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

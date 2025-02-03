@@ -165,7 +165,7 @@
     </fragment>
     <fragment
         android:id="@+id/myOrders"
-        android:name="com.example.flipkartclone.MyOrders"
+        android:name="com.example.flipkartclone.presentation.fragments.MyOrders"
         android:label="fragment_my_orders"
         tools:layout="@layout/fragment_my_orders" >
         <action

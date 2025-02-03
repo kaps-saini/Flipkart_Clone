@@ -29,28 +29,14 @@ class Categories : Fragment() {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater,R.layout.fragment_categories, container, false)
 
-        val sampleData = getSampleData()
 
-        val epoxyController = MainEpoxyController()
-
-        binding.epRv.setController(epoxyController)
-        binding.epRv.addItemDecoration(DividerItemDecoration(requireActivity(),RecyclerView.VERTICAL))
-
-        epoxyController.sampleData = sampleData
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        categoryAdapter = CategoryAdapter()
-        binding.rvCategory.apply {
-            adapter = categoryAdapter
-            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        }
-        val sampleData = getSampleData()
 
-        categoryAdapter.differ.submitList(sampleData)
     }
 
     override fun onDestroy() {

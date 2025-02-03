@@ -5,13 +5,14 @@ import com.bumptech.glide.Glide
 import com.example.flipkartclone.R
 import com.example.flipkartclone.adapter.epoxy.helper.ViewBindingKotlinModel
 import com.example.flipkartclone.databinding.BrandsLoveItemBinding
+import com.example.flipkartclone.domain.models.BrandsForYou
 import com.example.flipkartclone.domain.models.ItemModelItem
 
 class BrandsForYouController(
-    private val onClickCallback:(item: ItemModelItem) -> Unit
+    private val onClickCallback:(item: BrandsForYou) -> Unit
 ):EpoxyController() {
 
-    var isLoading:Boolean = false
+    private var isLoading:Boolean = false
         set(value){
             field = value
             if (field){
@@ -19,7 +20,7 @@ class BrandsForYouController(
             }
         }
 
-    var brandsData = listOf<ItemModelItem>()
+    var brandsData = listOf<BrandsForYou>()
         set(value){
             field = value
             isLoading = false
@@ -27,14 +28,6 @@ class BrandsForYouController(
         }
 
     override fun buildModels() {
-        if (isLoading){
-
-        }
-
-        if (brandsData.isEmpty()){
-
-        }
-
         brandsData.forEach{ data->
             brandsForYouModel(data,onClickCallback)
                 .id(data.id)
@@ -43,8 +36,8 @@ class BrandsForYouController(
     }
 
     data class brandsForYouModel(
-        private val itemModelItem: ItemModelItem,
-        private val onClick:(itemData: ItemModelItem) -> Unit
+        private val itemModelItem: BrandsForYou,
+        private val onClick:(itemData: BrandsForYou) -> Unit
     ):ViewBindingKotlinModel<BrandsLoveItemBinding>(R.layout.brands_love_item){
         override fun BrandsLoveItemBinding.bind() {
             tvBrandsLoveTitle.text = itemModelItem.title

@@ -6,6 +6,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
     alias(libs.plugins.google.gms.google.services)
 }
 
@@ -61,6 +62,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.messaging.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -108,5 +110,20 @@ dependencies {
     implementation ("com.airbnb.android:epoxy:$epoxyVersion")
     implementation ("com.airbnb.android:epoxy-databinding:$epoxyVersion")
     kapt ("com.airbnb.android:epoxy-processor:$epoxyVersion")
+
+    //room db
+    //val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+
+    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
+    // See Add the KSP plugin to your project
+    ksp("androidx.room:room-compiler:2.6.1")
+
+    //paging3
+    val paging_version = "3.3.5"
+    implementation("androidx.paging:paging-runtime:$paging_version")
 
 }
