@@ -17,18 +17,19 @@ class OrderedItemPref @Inject constructor(
     private val editor: SharedPreferences.Editor = prefs.edit()
     private val gson = Gson()
 
-//    // Add an Address to the list
     fun addOrderedItem(newOrderItem: OrderedItems) {
-        val orderedList = getOrderedList().toMutableList()
-        orderedList.add(newOrderItem)
-        saveOrderedItem(orderedList)
+        val orderedList = getOrderedListAsLive()?.toMutableList()
+        orderedList?.add(newOrderItem)
+        if (orderedList != null) {
+            saveOrderedItem(orderedList)
+        }
     }
 
-    fun addOrderedItemList(newOrderItem: List<OrderedItems>) {
-        val orderedItems = getOrderedList().toMutableList()
-        orderedItems.addAll(newOrderItem)
-        saveOrderedItem(orderedItems)
-    }
+//    fun addOrderedItemList(newOrderItem: List<OrderedItems>) {
+//        val orderedItems = getOrderedList().toMutableList()
+//        orderedItems.addAll(newOrderItem)
+//        saveOrderedItem(orderedItems)
+//    }
 
 //    // Delete an Address from the list
 //    fun deleteOrderedItem(cartItems: CartItems) {
@@ -38,36 +39,31 @@ class OrderedItemPref @Inject constructor(
 //    }
 //
     fun clearOrderedItems() {
-        val orderedList = getOrderedList().toMutableList()
-        orderedList.clear()
-        //saveOrderedItem(orderedList)
+        editor.remove("OrderedItems")
+        editor.apply()
     }
 
-    // Get the list of Addresses
-    private fun getOrderedList(): List<OrderedItems> {
-        val json = prefs.getString("OrderedList", null)
-        return if (json != null) {
-            val type = object : TypeToken<List<OrderedItems>>() {}.type
-            gson.fromJson(json, type)
-        } else {
-            emptyList()
-        }
-    }
+//    // Get the list of Addresses
+//    private fun getOrderedList(): List<OrderedItems> {
+//        val json = prefs.getString("OrderedList", null)
+//        return if (json != null) {
+//            val type = object : TypeToken<List<OrderedItems>>() {}.type
+//            gson.fromJson(json, type)
+//        } else {
+//            emptyList()
+//        }
+//    }
 
     fun getOrderedListAsLive(): List<OrderedItems>? {
-        val json = prefs.getString("OrderedList", null)
-        return if (json != null) {
-            val type = object : TypeToken<List<OrderedItems>>() {}.type
-            gson.fromJson(json, type)
-        } else {
-            null
-        }
+        val json = prefs.getString("OrderedItems", null) ?: return emptyList()
+        val type = object : TypeToken<List<OrderedItems>>() {}.type
+        return gson.fromJson(json, type)
     }
 
     // Save the Address list to SharedPreferences
     private fun saveOrderedItem(cartList: List<OrderedItems>) {
         val json = gson.toJson(cartList)
-        editor.putString("OrderedList", json)
+        editor.putString("OrderedItems", json)
         editor.apply()
     }
 

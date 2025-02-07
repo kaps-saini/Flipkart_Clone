@@ -26,14 +26,14 @@
                 android:importantForAccessibility="no"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_action_back_black"
-                android:padding="8dp"/>
+                android:padding="12dp"/>
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="My Orders"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:layout_marginStart="12dp"
                 android:textColor="@color/black"/>
         </LinearLayout>
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <SearchView
+            <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView2"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
@@ -66,7 +66,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="Filters"
                 android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/searchView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

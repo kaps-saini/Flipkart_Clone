@@ -7,5 +7,7 @@ object Util {
     const val PAYMENT_API_KEY = "rzp_test_QOZMYQ6cJ1Luo2"
     const val PAYMENT_STATUS = false
     const val DESTINATION_ID = "Destination_id"
+    const val ADD_TO_CART = "Add to Cart"
+    const val GO_TO_CART = "Go to Cart"
 
 }

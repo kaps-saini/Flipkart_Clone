@@ -46,6 +46,25 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        
+        btmNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.dashboard -> {
+                    btmNav.visibility = View.VISIBLE
+                    if (navController.currentDestination?.id != R.id.dashboard) {
+                        navController.popBackStack(R.id.dashboard, false) // Clears stack up to Dashboard
+                    }
+                    true
+                }
+                R.id.explore, R.id.categories, R.id.account, R.id.cart -> {
+                    btmNav.visibility = View.VISIBLE
+                    navController.navigate(item.itemId)
+                    true
+                }
+                else -> false
+            }
+        }
+
 
         val intent = intent.getStringExtra(Util.DESTINATION_ID)
         when (intent) {

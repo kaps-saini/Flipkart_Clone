@@ -5,8 +5,6 @@ import android.content.SharedPreferences
 import com.example.flipkartclone.domain.models.user.CartItems
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import dagger.Provides
-import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -18,53 +16,36 @@ class UserCartItemsPref @Inject constructor(
     private val editor: SharedPreferences.Editor = prefs.edit()
     private val gson = Gson()
 
-    // Add an Address to the list
+    // Add an item to the cart
     fun addCartItem(newCartItem: CartItems) {
         val cartList = getCartList().toMutableList()
         cartList.add(newCartItem)
         saveCartItem(cartList)
     }
 
-    // Delete an Address from the list
-    fun deleteCartItem(cartItems: CartItems) {
+    // Delete an item from the cart
+    fun deleteCartItem(cartItem: CartItems) {
         val cartList = getCartList().toMutableList()
-        cartList.remove(cartItems)
+        cartList.remove(cartItem) // Ensure CartItems has equals() implemented
         saveCartItem(cartList)
     }
 
+    // Clear all cart items
     fun clearCartItems() {
-        val cartList = getCartList().toMutableList()
-        cartList.clear()
-        saveCartItem(cartList)
+        editor.remove("CartList").apply()
     }
 
-    // Get the list of Addresses
+    // Get the list of cart items
     fun getCartList(): List<CartItems> {
-        val json = prefs.getString("CartList", null)
-        return if (json != null) {
-            val type = object : TypeToken<List<CartItems>>() {}.type
-            gson.fromJson(json, type)
-        } else {
-            emptyList()
-        }
+        val json = prefs.getString("CartList", null) ?: return emptyList()
+        val type = object : TypeToken<List<CartItems>>() {}.type
+        return gson.fromJson(json, type)
     }
 
-    fun getCartListAsLive(): List<CartItems>? {
-        val json = prefs.getString("CartList", null)
-        return if (json != null) {
-            val type = object : TypeToken<List<CartItems>>() {}.type
-            gson.fromJson(json, type)
-        } else {
-            null
-        }
-    }
-
-    // Save the Address list to SharedPreferences
+    // Save the cart list
     private fun saveCartItem(cartList: List<CartItems>) {
         val json = gson.toJson(cartList)
         editor.putString("CartList", json)
-        editor.apply()
+        editor.apply() // Use commit() if you need immediate saving
     }
-
-
 }

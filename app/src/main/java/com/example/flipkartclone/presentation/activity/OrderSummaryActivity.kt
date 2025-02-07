@@ -121,10 +121,11 @@ class OrderSummaryActivity : AppCompatActivity(),PaymentResultWithDataListener {
             startPayment()
         }
         ivBackSummary.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
-            intent.putExtra(DESTINATION_ID,DestinationName.CART_LAYOUT.name)
-            startActivity(intent)
+//            val intent = Intent(this,MainActivity::class.java)
+//            //intent.putExtra(DESTINATION_ID,DestinationName.CART_LAYOUT.name)
+//            startActivity(intent)
             //findNavController().navigateUp()
+            finish()
         }
     }
 

@@ -36,6 +36,13 @@ class MyOrders : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fetchOrderListData()
+        userEvents()
+    }
+
+    private fun userEvents() {
+        binding.ivBackOrders.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun fetchOrderListData() {

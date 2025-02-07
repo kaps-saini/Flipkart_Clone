@@ -1,5 +1,6 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
     <style name="Base.Theme.FlipkartClone" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
@@ -29,7 +30,6 @@
         <item name="colorError">@color/red</item>
         <item name="colorOnError">@color/white</item>
 
-        <item name="android:windowSplashScreenBackground">@color/blue</item>
+        <item name="android:windowSplashScreenBackground">@color/dark_blue</item>
     </style>
-    <style name="Theme.FlipkartClone" parent="Base.Theme.FlipkartClone" />
 </resources>

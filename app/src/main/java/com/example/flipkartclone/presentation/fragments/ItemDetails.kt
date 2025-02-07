@@ -31,6 +31,7 @@ import com.example.flipkartclone.domain.models.user.CartItems
 import com.example.flipkartclone.helper.Helpers
 import com.example.flipkartclone.utils.CheckNetwork
 import com.example.flipkartclone.utils.Status
+import com.example.flipkartclone.utils.Util
 import com.example.flipkartclone.vm.FlipkartCloneViewModel
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.progressindicator.LinearProgressIndicator
@@ -100,17 +101,16 @@ class ItemDetails : Fragment() {
                 val itemDetail = navArgs.itemData.item
                 val itemPrice = navArgs.itemData.pricing
                 val rating = navArgs.itemData.ratings
-                if (binding.btnAddToCart.text.contains(Status.GoToCart.toString(),false)){
+                if (binding.btnAddToCart.text.contains(Util.GO_TO_CART,false)){
                     findNavController().navigate(R.id.action_itemDetails_to_cart2)
-                }else if (binding.btnAddToCart.text.contains(Status.AddToCart.toString(),false)){
+                }else if (binding.btnAddToCart.text.contains(Util.ADD_TO_CART,false)){
                     userCartItemsPref.addCartItem(CartItems(itemDetail,itemPrice,rating,1))
-                    binding.btnAddToCart.text = Status.GoToCart.toString()
+                    binding.btnAddToCart.text = Util.GO_TO_CART.toString()
                     Helpers.makeSnackBar(requireView(),"Added to cart successfully")
                 }
             }else{
                 Helpers.makeSnackBar(requireView(),"Please check your internet connection!")
             }
-
         }
 
         binding.btnBuyNow.setOnClickListener{

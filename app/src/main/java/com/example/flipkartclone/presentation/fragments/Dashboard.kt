@@ -157,43 +157,12 @@ class Dashboard : Fragment() {
         setupSponsoredRv()
 
         viewLifecycleOwner.lifecycleScope.launch {
-           // viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.itemResult.collect { response ->
                     when (response) {
                         is Resource.Error -> {
                             hideProgressBar()
                            // binding.appbar.visibility = View.GONE
-                            if (response.message?.contains(Status.NoInternet.toString()) == true){
-//                                binding.viewNoInternet.visibility = View.VISIBLE
-//                                binding.btnRetry.setOnClickListener {
-//                                    viewModel.getAllItems()
-//                                }
-                            }else{
-                                Helpers.makeSnackBar(requireView(), response.message.toString())
-                            }
-                        }
-                        is Resource.Loading -> {
-                            showProgressBar()
-                        }
-                        is Resource.Success -> {
-                            binding.viewNoInternet.visibility = View.GONE
-                            binding.appbar.visibility = View.VISIBLE
-                            hideProgressBar()
-                            giftingAdapter.differ.submitList(response.data?.subList(0, 4))
-                        }
-                    }
-                }
-           // }
-        }
-
-
-        viewLifecycleOwner.lifecycleScope.launch {
-           // viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.brandsForYou.collect { response ->
-                    when (response) {
-                        is Resource.Error -> {
-                            hideProgressBar()
-//                           // binding.appbar.visibility = View.GONE
 //                            if (response.message?.contains(Status.NoInternet.toString()) == true){
 ////                                binding.viewNoInternet.visibility = View.VISIBLE
 ////                                binding.btnRetry.setOnClickListener {
@@ -210,10 +179,45 @@ class Dashboard : Fragment() {
                             binding.viewNoInternet.visibility = View.GONE
                             binding.appbar.visibility = View.VISIBLE
                             hideProgressBar()
+                            response.data?.toString()?.let { Log.i("giftingList", it) }
+                            giftingAdapter.differ.submitList(response.data?.subList(0, 4))
+                        }
+                    }
+                }
+            }
+        }
+
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.brandsForYou.collect { response ->
+                    when (response) {
+                        is Resource.Error -> {
+                            hideProgressBar()
+//                           // binding.appbar.visibility = View.GONE
+//                            if (response.message?.contains(Status.NoInternet.toString()) == true){
+////                                binding.viewNoInternet.visibility = View.VISIBLE
+////                                binding.btnRetry.setOnClickListener {
+////                                    viewModel.getAllItems()
+////                                }
+//                            }else{
+//                                Helpers.makeSnackBar(requireView(), response.message.toString())
+//                            }
+                        }
+
+                        is Resource.Loading -> {
+                            showProgressBar()
+                        }
+
+                        is Resource.Success -> {
+                            binding.viewNoInternet.visibility = View.GONE
+                            binding.appbar.visibility = View.VISIBLE
+                            hideProgressBar()
                             brandsForYouController.brandsData = response.data!!
                         }
                     }
                 }
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -223,15 +227,15 @@ class Dashboard : Fragment() {
                         is Resource.Error -> {
                             hideProgressBar()
                             binding.appbar.visibility = View.GONE
-                            if (response.message?.contains(Status.NoInternet.toString()) == true){
-//                                binding.viewNoInternet.visibility = View.VISIBLE
-//                                binding.btnRetry.setOnClickListener {
-//                                    viewModel.getAllItems()
-//                                }
-                            }else{
-                                Helpers.makeSnackBar(requireView(), response.message.toString())
-                                Log.e("dashboard",response.message.toString())
-                            }
+//                            if (response.message?.contains(Status.NoInternet.toString()) == true){
+////                                binding.viewNoInternet.visibility = View.VISIBLE
+////                                binding.btnRetry.setOnClickListener {
+////                                    viewModel.getAllItems()
+////                                }
+//                            }else{
+//                                Helpers.makeSnackBar(requireView(), response.message.toString())
+//                                Log.e("dashboard",response.message.toString())
+//                            }
                         }
                         is Resource.Loading -> {
                             showProgressBar()
@@ -249,20 +253,20 @@ class Dashboard : Fragment() {
 
 
         viewLifecycleOwner.lifecycleScope.launch {
-            // viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
             viewModel.sponsors.collect { response ->
                 when (response) {
                     is Resource.Error -> {
                         hideProgressBar()
                         // binding.appbar.visibility = View.GONE
-                        if (response.message?.contains(Status.NoInternet.toString()) == true){
-//                                binding.viewNoInternet.visibility = View.VISIBLE
-//                                binding.btnRetry.setOnClickListener {
-//                                    viewModel.getAllItems()
-//                                }
-                        }else{
-                            Helpers.makeSnackBar(requireView(), response.message.toString())
-                        }
+//                        if (response.message?.contains(Status.NoInternet.toString()) == true){
+////                                binding.viewNoInternet.visibility = View.VISIBLE
+////                                binding.btnRetry.setOnClickListener {
+////                                    viewModel.getAllItems()
+////                                }
+//                        }else{
+//                            Helpers.makeSnackBar(requireView(), response.message.toString())
+//                        }
                     }
                     is Resource.Loading -> {
                         showProgressBar()
@@ -275,7 +279,7 @@ class Dashboard : Fragment() {
                     }
                 }
             }
-            // }
+             }
         }
 
         return binding.root

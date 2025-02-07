@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_account_to_dashboard"
             app:destination="@id/dashboard" />
+        <action
+            android:id="@+id/action_account_to_myOrders"
+            app:destination="@id/myOrders" />
     </fragment>
     <fragment
         android:id="@+id/cart"

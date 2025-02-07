@@ -54,9 +54,13 @@ class Account : Fragment() {
         }
 
         binding.tvAccount.setOnClickListener {
-            findNavController().navigate(R.id.action_account_to_editProfile)
+            val destination = AccountDirections.actionAccountToEditProfile(auth.currentUser?.phoneNumber.toString())
+            findNavController().navigate(destination)
         }
 
+        binding.tvOrders.setOnClickListener {
+            findNavController().navigate(R.id.action_account_to_myOrders)
+        }
         binding.tvSavedAddress.setOnClickListener {
             findNavController().navigate(R.id.action_account_to_savedAddress)
         }

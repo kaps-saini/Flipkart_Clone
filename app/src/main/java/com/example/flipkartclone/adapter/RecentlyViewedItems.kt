@@ -79,6 +79,7 @@ class RecentlyViewedItems (
             holder.pbAdd.visibility = View.VISIBLE
             holder.tvAdd.text = "Added"
             holder.pbAdd.visibility = View.GONE
+            holder.tvAdd.visibility = View.VISIBLE
         }
     }
 }

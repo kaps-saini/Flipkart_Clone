@@ -9,12 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.flipkartclone.R
+import com.example.flipkartclone.data.user.OrderedItemPref
 import com.example.flipkartclone.data.user.UserDetailsPref
 import com.example.flipkartclone.databinding.FragmentEditProfileBinding
 import com.example.flipkartclone.domain.models.user.UserDetails
 import com.example.flipkartclone.helper.Helpers
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.awaitAll
+import okhttp3.internal.wait
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -25,6 +28,8 @@ class EditProfile : Fragment() {
 
     @Inject
     lateinit var userDetailsPref: UserDetailsPref
+    @Inject
+    lateinit var orderedItemPref: OrderedItemPref
     private val args by navArgs<EditProfileArgs>()
     private val auth = FirebaseAuth.getInstance()
     private lateinit var userPhoneNumber:String
@@ -55,15 +60,25 @@ class EditProfile : Fragment() {
             findNavController().navigateUp()
         }
 
-        binding.tvDeleteAccount.setOnClickListener{
-            Helpers.showDeleteAccountDialog(requireContext()){
-                auth.currentUser?.delete()?.addOnSuccessListener {
-                    userDetailsPref.deleteUserDetails()
-                    Helpers.makeSnackBar(requireView(),"Account Deleted")
-                    findNavController().navigate(R.id.action_editProfile_to_dashboard)
+        binding.tvDeleteAccount.setOnClickListener {
+            Helpers.showDeleteAccountDialog(requireContext()) {
+                auth.currentUser?.let { user ->
+                    user.delete()
+                        .addOnSuccessListener {
+                            userDetailsPref.deleteUserDetails()
+                            orderedItemPref.clearOrderedItems()
+                            Helpers.makeSnackBar(requireView(), "Account Deleted")
+                            findNavController().navigate(R.id.action_editProfile_to_dashboard)
+                        }
+                        .addOnFailureListener { e ->
+                            Helpers.makeSnackBar(requireView(), "Failed to delete account: ${e.message}")
+                        }
+                } ?: run {
+                    Helpers.makeSnackBar(requireView(), "No user is currently signed in")
                 }
             }
         }
+
 
         return binding.root
     }

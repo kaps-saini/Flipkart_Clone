@@ -25,9 +25,9 @@ class RecommendedItems(
         val itemSellingPrice: TextView = itemView.findViewById(R.id.tvSellingPriceAddToCart)
         val itemMrp: TextView = itemView.findViewById(R.id.tvMrpInAdd)
         val itemDiscount: TextView = itemView.findViewById(R.id.tvItemDescCartAdd)
-        val btnAdd: FrameLayout = itemView.findViewById(R.id.btnAdd)
-        val tvAdd: TextView = itemView.findViewById(R.id.tvAddToCart)
-        val pbAdd: ProgressBar = itemView.findViewById(R.id.pbAddToCart)
+//        val btnAdd: FrameLayout = itemView.findViewById(R.id.btnAdd)
+//        val tvAdd: TextView = itemView.findViewById(R.id.tvAddToCart)
+//        val pbAdd: ProgressBar = itemView.findViewById(R.id.pbAddToCart)
 
         fun bind(itemDataModel: ItemDataModel){
             val price = itemDataModel.pricing.sellingPrice.toString()

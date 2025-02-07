@@ -147,7 +147,7 @@ class FlipkartCloneViewModel @Inject constructor(
     }
 
     fun getItemsInCart() {
-        val data = userCartItemsPref.getCartListAsLive()
+        val data = userCartItemsPref.getCartList()
         _cartItemsData.value = data
     }
 
